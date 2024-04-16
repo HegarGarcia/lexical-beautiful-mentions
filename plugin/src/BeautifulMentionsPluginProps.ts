@@ -1,5 +1,11 @@
 import { ComponentPropsWithRef, ElementType } from "react";
 
+export type BeautifulMentionsItemData = string | boolean | number | null;
+
+export type BeautifulMentionsMetadata = {
+  [key: string]: BeautifulMentionsItemData;
+};
+
 /**
  * Represents a menu item for a mention.
  */
@@ -20,7 +26,7 @@ export interface BeautifulMentionsMenuItem {
   /**
    * Additional data belonging to the mention.
    */
-  data?: { [key: string]: BeautifulMentionsItemData };
+  data?: BeautifulMentionsMetadata;
 }
 
 /**
@@ -44,10 +50,8 @@ export interface BeautifulMentionsComboboxItem {
   /**
    * Additional data belonging to the mention.
    */
-  data?: { [key: string]: BeautifulMentionsItemData };
+  data?: BeautifulMentionsMetadata;
 }
-
-export type BeautifulMentionsItemData = string | boolean | number | null;
 
 /**
  * The mention without the trigger. For example: "John". Either a string or
@@ -56,10 +60,7 @@ export type BeautifulMentionsItemData = string | boolean | number | null;
  */
 export type BeautifulMentionsItem =
   | string
-  | {
-      value: string;
-      [key: string]: BeautifulMentionsItemData;
-    };
+  | ({ value: string } & BeautifulMentionsMetadata);
 
 /**
  * Props for BeautifulMentionsMenu component. This component is used to render
